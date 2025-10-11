@@ -1,0 +1,580 @@
+[gd_scene load_steps=21 format=3 uid="uid://c2d8eis0nmqbv"]
+
+[ext_resource type="Texture2D" uid="uid://c7ssnpswr04i3" path="res://assets/player/leg_spritesheet.png" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://b2wnofxey6xn5" path="res://player/player.gd" id="1_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://du1ns2egig7h0" path="res://assets/player/player_sprite_sheet.png" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bo1yagkpixg58" path="res://scripts/BasicIK.gd" id="3_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://du0v30xg4hf8e" path="res://assets/shotgun/shotgun_spritesheet.png" id="4_yw30f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1dw6"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjkh3"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgyib"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8t03j"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkbax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1dw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw30f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjkh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6k8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boad6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgyib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Shotgun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-41, -19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Shotgun:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Body:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/ArmR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/ArmL:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-18, -5.9999995)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Shotgun/LeftHandMarker:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-34, 1.0000048)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Shotgun/LeftHandMarker:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.3893557]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/Head:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+resource_name = "Walk"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Shotgun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -17), Vector2(-13, -16.999998)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Shotgun:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/ArmL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-13, -4.000002)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/ArmR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 3.9999986)]
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "aim"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Shotgun:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Body:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Body:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.87266463]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/ArmR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 10.999999)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Shotgun:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, -27)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/ArmL:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -14)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Shotgun/LeftHandMarker:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-34, 1.0000048)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Shotgun/LeftHandMarker:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.3893557]
+}
+
+[sub_resource type="Animation" id="Animation_rgyib"]
+resource_name = "fire"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Shotgun:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 0.21022417, 2.7320802),
+"update": 0,
+"values": [Vector2(11, -27), Vector2(17, 2.000002), Vector2(11, -27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Shotgun:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707964, 1.5707964]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Body:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.0000004, 3.0000005), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.1855695e-07, 5), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Body:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.87266463, 1.1064868, 0.87266463]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_boad6"]
+_data = {
+&"RESET": SubResource("Animation_qjkh3"),
+&"aim": SubResource("Animation_boad6"),
+&"fire": SubResource("Animation_rgyib"),
+&"walk": SubResource("Animation_g6k8r")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yw30f"]
+radius = 15.0
+height = 52.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shotgun")]
+collision_layer = 0
+script = ExtResource("1_qjkh3")
+shotgun = NodePath("Graphics/Shotgun")
+
+[node name="Graphics" type="Node2D" parent="."]
+rotation = 1.5707964
+
+[node name="Legs" type="AnimatedSprite2D" parent="Graphics"]
+sprite_frames = SubResource("SpriteFrames_8t03j")
+animation = &"walk"
+frame_progress = 0.04031853
+
+[node name="Body" type="Sprite2D" parent="Graphics"]
+self_modulate = Color(0.19434926, 0.19434929, 0.1943492, 1)
+texture = ExtResource("2_rkbax")
+region_enabled = true
+region_rect = Rect2(82.08039, 67.96645, 43.971054, 26.446358)
+
+[node name="Head" type="Sprite2D" parent="Graphics"]
+self_modulate = Color(0.12955844, 0.12955847, 0.12955844, 1)
+texture = ExtResource("2_rkbax")
+region_enabled = true
+region_rect = Rect2(97.20846, 101.01335, 19.586617, 19.586617)
+
+[node name="ArmL" type="Node2D" parent="Graphics" node_paths=PackedStringArray("hand_pos_marker", "shoulder", "elbow", "hand")]
+position = Vector2(-18, -5.9999995)
+rotation = 3.1262276
+script = ExtResource("3_g1dw6")
+hand_pos_marker = NodePath("../Shotgun/LeftHandMarker")
+shoulder = NodePath("Shoulder")
+elbow = NodePath("Shoulder/Elbow")
+hand = NodePath("Shoulder/Elbow/Hand")
+
+[node name="Shoulder" type="Node2D" parent="Graphics/ArmL"]
+rotation = -0.4434078
+
+[node name="UpperArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder"]
+modulate = Color(0.16565639, 0.16565642, 0.16565639, 1)
+position = Vector2(11, 0)
+texture = ExtResource("2_rkbax")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(91.40177, 45.35976, 32.50035, 14.975647)
+
+[node name="Elbow" type="Node2D" parent="Graphics/ArmL/Shoulder"]
+position = Vector2(22.00761, 0)
+rotation = 1.8774716
+
+[node name="LowerArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow"]
+self_modulate = Color(0.2509804, 0.2509804, 0.2509804, 1)
+position = Vector2(11, 0)
+texture = ExtResource("2_rkbax")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(94.58808, 25.923279, 28.358139, 13.701126)
+
+[node name="Hand" type="Node2D" parent="Graphics/ArmL/Shoulder/Elbow"]
+position = Vector2(22, 0)
+rotation = -0.66646177
+
+[node name="Hand" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow/Hand"]
+self_modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
+position = Vector2(7, -1)
+texture = ExtResource("2_rkbax")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(101.279335, 6.4867983, 17.206055, 13.382495)
+
+[node name="Shotgun" type="Node2D" parent="Graphics"]
+position = Vector2(-41, -19)
+
+[node name="LeftHandMarker" type="Marker2D" parent="Graphics/Shotgun"]
+position = Vector2(-34, 1.0000048)
+rotation = -2.3893557
+scale = Vector2(0.739068, 1.3483909)
+
+[node name="RightHandMarker" type="Marker2D" parent="Graphics/Shotgun"]
+position = Vector2(8.87487, 0.03258133)
+rotation = -2.609796
+scale = Vector2(1.2949568, 1.0662366)
+
+[node name="Barrel" type="Sprite2D" parent="Graphics/Shotgun"]
+self_modulate = Color(0.32544088, 0.3254409, 0.32544088, 1)
+position = Vector2(-36.12513, 1.0325848)
+rotation = -0.8115781
+texture = ExtResource("4_yw30f")
+region_enabled = true
+region_rect = Rect2(8.152168, 2.39353, 42.79531, 37.01216)
+
+[node name="Handle" type="Sprite2D" parent="Graphics/Shotgun"]
+self_modulate = Color(0.2231029, 0.2231029, 0.22310287, 1)
+position = Vector2(9.87487, -1.9674153)
+rotation = -0.82030475
+texture = ExtResource("4_yw30f")
+region_enabled = true
+region_rect = Rect2(47.930946, 39.002037, 44.95436, 40.71338)
+
+[node name="ArmR" type="Node2D" parent="Graphics" node_paths=PackedStringArray("hand_pos_marker", "shoulder", "elbow", "hand")]
+position = Vector2(20, 1)
+script = ExtResource("3_g1dw6")
+hand_pos_marker = NodePath("../Shotgun/RightHandMarker")
+shoulder = NodePath("Shoulder")
+elbow = NodePath("Shoulder/Elbow")
+hand = NodePath("Shoulder/Elbow/Hand")
+elbow_flipped = false
+
+[node name="Shoulder" type="Node2D" parent="Graphics/ArmR"]
+rotation = -1.0108448
+
+[node name="UpperArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder"]
+modulate = Color(0.16565639, 0.16565642, 0.16565639, 1)
+position = Vector2(11, 0)
+texture = ExtResource("2_rkbax")
+region_enabled = true
+region_rect = Rect2(91.40177, 45.35976, 32.50035, 14.975647)
+
+[node name="Elbow" type="Node2D" parent="Graphics/ArmR/Shoulder"]
+position = Vector2(22.002335, -1.9073486e-06)
+rotation = -2.0248566
+
+[node name="LowerArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow"]
+self_modulate = Color(0.2509804, 0.2509804, 0.2509804, 1)
+position = Vector2(11, 0)
+texture = ExtResource("2_rkbax")
+region_enabled = true
+region_rect = Rect2(94.58808, 25.923279, 28.358139, 13.701126)
+
+[node name="Hand" type="Node2D" parent="Graphics/ArmR/Shoulder/Elbow"]
+position = Vector2(22, 0)
+rotation = 0.42590538
+
+[node name="Hand" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow/Hand"]
+self_modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
+position = Vector2(7, -1)
+texture = ExtResource("2_rkbax")
+region_enabled = true
+region_rect = Rect2(101.279335, 6.4867983, 17.206055, 13.382495)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_boad6")
+}
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_yw30f")
