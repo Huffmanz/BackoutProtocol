@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj6j5w83x3fn4"]
+
+[ext_resource type="PackedScene" uid="uid://cxk8jkhkfp0g6" path="res://addons/health/hitbox_component.tscn" id="1_42du2"]
+[ext_resource type="Script" uid="uid://ct6os8jdetp15" path="res://player/bullet.gd" id="1_risil"]
+[ext_resource type="Texture2D" uid="uid://d0t2f8tj70i63" path="res://addons/assets/circle.png" id="2_4kon0"]
+[ext_resource type="PackedScene" uid="uid://bqfcnscgn0lcr" path="res://addons/movement/velocity_component.tscn" id="2_yag3h"]
+[ext_resource type="PackedScene" uid="uid://bbsng2wamnnnx" path="res://addons/vfx/trail.tscn" id="3_risil"]
+[ext_resource type="Texture2D" uid="uid://k8oopap8hvqh" path="res://addons/assets/lighting/2d_lights_and_shadows_neutral_point_light.webp" id="4_yag3h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dom4l"]
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_risil")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_yag3h")]
+max_speed = 800
+acceleration = 800.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dom4l")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("1_42du2")]
+collision_layer = 16
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_dom4l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.19076231, 0.19076234, 0.19076231, 1)
+position = Vector2(0, -4.7683716e-07)
+scale = Vector2(1, 0.4375)
+texture = ExtResource("2_4kon0")
+
+[node name="TrailComponent" parent="." instance=ExtResource("3_risil")]
+default_color = Color(0.31431612, 0.31431612, 0.3143161, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("4_yag3h")
+texture_scale = 0.05

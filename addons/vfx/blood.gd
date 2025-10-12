@@ -4,7 +4,8 @@ extends CPUParticles2D
 
 func _ready():
 	timer.timeout.connect(on_timer_timeout)
-	
+	emitting = true
+
 func on_timer_timeout():
 	set_process(false)
 	set_physics_process(false)

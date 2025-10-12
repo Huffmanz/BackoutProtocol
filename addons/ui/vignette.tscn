@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://blmklthk38yc1"]
+[gd_scene load_steps=7 format=3 uid="uid://blmklthk38yc1"]
 
 [ext_resource type="Shader" uid="uid://b2hlyiw316afs" path="res://addons/shaders/vignette.gdshader" id="1_l1h83"]
+[ext_resource type="Shader" uid="uid://jin2eqt4pryc" path="res://addons/shaders/static_overlay.gdshader" id="2_pcf8w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pcf8w"]
 shader = ExtResource("1_l1h83")
@@ -8,10 +9,34 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pcf8w"]
+noise_type = 4
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i8ckm"]
+noise = SubResource("FastNoiseLite_pcf8w")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mh535"]
+shader = ExtResource("2_pcf8w")
+shader_parameter/Noise = SubResource("NoiseTexture2D_i8ckm")
+shader_parameter/Transparency = 2.0
+shader_parameter/Slow = 25.0
+
 [node name="Vignette" type="CanvasLayer"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_pcf8w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mh535")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

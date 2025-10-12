@@ -1,0 +1,403 @@
+[gd_scene load_steps=12 format=3 uid="uid://qdp8bchihp4g"]
+
+[ext_resource type="Texture2D" uid="uid://ct8q6ohfjdcyj" path="res://assets/enemy/monster_spritesheet_128.png" id="1_4hbkr"]
+[ext_resource type="Script" uid="uid://bo1yagkpixg58" path="res://scripts/BasicIK.gd" id="2_455eq"]
+[ext_resource type="PackedScene" uid="uid://cpybrjbfi0xld" path="res://addons/health/hurt_component.tscn" id="3_m5oy5"]
+[ext_resource type="PackedScene" uid="uid://cg7ijr0kr0ad7" path="res://addons/health/health_component.tscn" id="4_455eq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgde"]
+radius = 13.0
+height = 38.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4hbkr"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w32yo"]
+
+[sub_resource type="Animation" id="Animation_tsgde"]
+resource_name = "Crawl"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/ArmL/HandMarker:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(17, 1.0000019), Vector2(10, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/ArmR/HandMarker:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11.000002, 30), Vector2(-18.000002, -1.9999962)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Head:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.18946297, 0.182817]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/UpperTorso:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2293216, -0.19024088846738152]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/LowerTorso:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.28203535, -0.25830872929516097]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/LowerTorso:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5.0000005, -17), Vector2(-3.555, -17)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/ArmL/HandMarker:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707964, 1.5707964]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/ArmR/HandMarker:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0035644, 1.5707964]
+}
+
+[sub_resource type="Animation" id="Animation_pmfem"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/ArmL/HandMarker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.000002, 26.000006)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/ArmR/HandMarker:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 22)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/UpperTorso:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/LowerTorso:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/LowerTorso:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/ArmL/HandMarker:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/ArmR/HandMarker:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5707964]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w32yo"]
+_data = {
+&"Crawl": SubResource("Animation_tsgde"),
+&"RESET": SubResource("Animation_pmfem")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_455eq"]
+radius = 14.0
+height = 56.0
+
+[node name="CrawlingMonster" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -6)
+shape = SubResource("CapsuleShape2D_tsgde")
+
+[node name="Graphics" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_4hbkr")
+
+[node name="LowerTorso" type="Sprite2D" parent="Graphics"]
+self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(0, -19)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(1.2707214, -1.091816, 27.518112, 28.966438)
+
+[node name="UpperTorso" type="Sprite2D" parent="Graphics"]
+self_modulate = Color(0.2159017, 0.21590173, 0.2159017, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(-0.69664, 29.521955, 32.44651, 21.367216)
+
+[node name="ArmL" type="Node2D" parent="Graphics" node_paths=PackedStringArray("hand_pos_marker", "shoulder", "elbow", "hand")]
+use_parent_material = true
+position = Vector2(11, 4)
+script = ExtResource("2_455eq")
+hand_pos_marker = NodePath("HandMarker")
+shoulder = NodePath("Shoulder")
+elbow = NodePath("Shoulder/Elbow")
+hand = NodePath("Shoulder/Elbow/Hand")
+
+[node name="HandMarker" type="Marker2D" parent="Graphics/ArmL"]
+position = Vector2(13.000002, 26.000006)
+rotation = 1.5707964
+scale = Vector2(0.918456, 1.5388377)
+
+[node name="Shoulder" type="Node2D" parent="Graphics/ArmL"]
+use_parent_material = true
+rotation = 0.35468304
+scale = Vector2(1.5, 1.5)
+
+[node name="UpperArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder"]
+self_modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(5, 0.9999999)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
+
+[node name="Elbow" type="Node2D" parent="Graphics/ArmL/Shoulder"]
+use_parent_material = true
+position = Vector2(19.104916, 9.536743e-07)
+rotation = 1.928986
+
+[node name="LowerArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow"]
+self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(6.0226965, -1.9999987)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
+
+[node name="Hand" type="Node2D" parent="Graphics/ArmL/Shoulder/Elbow"]
+use_parent_material = true
+position = Vector2(14, -1.9999962)
+rotation = -0.71287256
+
+[node name="Hand" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow/Hand"]
+self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(5, -1)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(106.00077, 27.646797, 16.221207, 14.193554)
+
+[node name="ArmR" type="Node2D" parent="Graphics" node_paths=PackedStringArray("hand_pos_marker", "shoulder", "elbow", "hand")]
+use_parent_material = true
+position = Vector2(-12, 7)
+script = ExtResource("2_455eq")
+hand_pos_marker = NodePath("HandMarker")
+shoulder = NodePath("Shoulder")
+elbow = NodePath("Shoulder/Elbow")
+hand = NodePath("Shoulder/Elbow/Hand")
+elbow_flipped = false
+
+[node name="HandMarker" type="Marker2D" parent="Graphics/ArmR"]
+position = Vector2(-14, 22)
+rotation = 1.5707964
+scale = Vector2(0.918456, 1.5388377)
+
+[node name="Shoulder" type="Node2D" parent="Graphics/ArmR"]
+use_parent_material = true
+rotation = 2.9523613
+scale = Vector2(1.5, 1.5)
+
+[node name="UpperArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder"]
+self_modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(4.4679146, 0.19425678)
+texture = ExtResource("1_4hbkr")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
+
+[node name="Elbow" type="Node2D" parent="Graphics/ArmR/Shoulder"]
+use_parent_material = true
+position = Vector2(18.249924, 0)
+rotation = -2.034427
+
+[node name="LowerArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow"]
+self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(5.4506636, 0.5827694)
+texture = ExtResource("1_4hbkr")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
+
+[node name="Hand" type="Node2D" parent="Graphics/ArmR/Shoulder/Elbow"]
+use_parent_material = true
+position = Vector2(14, -1.9999962)
+rotation = 0.652862
+
+[node name="Hand" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow/Hand"]
+self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(4.2731686, 1.6929722)
+texture = ExtResource("1_4hbkr")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(106.00077, 27.646797, 16.221207, 14.193554)
+
+[node name="Head" type="Sprite2D" parent="Graphics"]
+self_modulate = Color(0.15487596, 0.154876, 0.15487596, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
+use_parent_material = true
+position = Vector2(0, 11)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(6.612995, 52.417007, 17.720827, 25.289093)
+
+[node name="Eyes" type="Sprite2D" parent="Graphics/Head"]
+visible = false
+self_modulate = Color(0.12225223, 0.12225223, 0.12225223, 1)
+position = Vector2(0.2947377, 1.9781632)
+texture = ExtResource("1_4hbkr")
+region_enabled = true
+region_rect = Rect2(10.050667, 82.22673, 12.448387, 5.0272293)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w32yo")
+}
+autoplay = "Crawl"
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_m5oy5")]
+collision_layer = 16
+collision_mask = 16
+health_component = NodePath("../HealthComponent")
+show_damange_numbers = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_455eq")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_455eq")]

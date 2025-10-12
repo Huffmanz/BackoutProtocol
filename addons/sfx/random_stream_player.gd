@@ -1,3 +1,4 @@
+class_name RandomStreamPlayer
 extends AudioStreamPlayer2D
 
 @export var streams: Array[AudioStream]

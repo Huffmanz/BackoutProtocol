@@ -4,13 +4,13 @@
 [ext_resource type="Script" uid="uid://cfujdbtae3txl" path="res://addons/vfx/blood.gd" id="2_ypna7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu506"]
+light_mode = 1
 
 [sub_resource type="Curve" id="Curve_y615r"]
 _data = [Vector2(0, 0.305263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Blood" type="CPUParticles2D"]
-z_index = -1
 material = SubResource("CanvasItemMaterial_cu506")
 amount = 32
 texture = ExtResource("1_icpx3")

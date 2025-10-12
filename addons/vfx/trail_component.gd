@@ -1,6 +1,6 @@
 extends Line2D
 
-const TIME_STEP := 0.02
+const TIME_STEP := 0.04
 
 @export var max_points := 32
 
