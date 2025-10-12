@@ -1,0 +1,15 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs2auolwabs6d"]
+
+[ext_resource type="PackedScene" uid="uid://d11lb6fx6l6b3" path="res://addons/gib/gib.tscn" id="1_yyhqf"]
+[ext_resource type="Texture2D" uid="uid://da8hnlk38nd6d" path="res://assets/gore/Lungs1.png" id="2_yyhqf"]
+[ext_resource type="Texture2D" uid="uid://beq0j5ols1biq" path="res://assets/gore/Lungs2.png" id="3_froe0"]
+[ext_resource type="Texture2D" uid="uid://cd0vseuahjjxv" path="res://assets/gore/Lungs3.png" id="4_vxjky"]
+[ext_resource type="Texture2D" uid="uid://c3ycgeb57qmax" path="res://assets/gore/Lungs4.png" id="5_uagoe"]
+[ext_resource type="Texture2D" uid="uid://bqb2rd6dejlmm" path="res://assets/gore/Lungs5.png" id="6_cq7at"]
+
+[node name="LungGib" instance=ExtResource("1_yyhqf")]
+texture = Array[Texture2D]([ExtResource("2_yyhqf"), ExtResource("3_froe0"), ExtResource("4_vxjky"), ExtResource("5_uagoe"), ExtResource("6_cq7at")])
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_yyhqf")

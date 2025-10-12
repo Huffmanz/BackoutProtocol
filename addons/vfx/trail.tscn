@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbsng2wamnnnx"]
+
+[ext_resource type="Script" uid="uid://bnjkgh4cvydwl" path="res://addons/vfx/trail_component.gd" id="1_sjo7d"]
+
+[sub_resource type="Curve" id="Curve_wstra"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="TrailComponent" type="Line2D"]
+width = 3.0
+width_curve = SubResource("Curve_wstra")
+default_color = Color(0, 0.498039, 0.870588, 1)
+script = ExtResource("1_sjo7d")

@@ -14,6 +14,15 @@ config/name="BlackoutProtocol"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Utils="*res://addons/autoload/utils.gd"
+GameEvents="*res://autoloads/GameEvents.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/shaker/plugin.cfg")
+
 [input]
 
 move_left={
@@ -56,5 +65,3 @@ aim={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1qjp2e5gdj56"]
+
+[ext_resource type="PackedScene" uid="uid://d11lb6fx6l6b3" path="res://addons/gib/gib.tscn" id="1_vtmue"]
+[ext_resource type="Texture2D" uid="uid://70kpkk7mbg7h" path="res://assets/gore/Flesh1.png" id="2_vtmue"]
+[ext_resource type="Texture2D" uid="uid://difdmngmoc5n3" path="res://assets/gore/Flesh2.png" id="3_c7ksk"]
+[ext_resource type="Texture2D" uid="uid://c6xkq3jp7d06j" path="res://assets/gore/Flesh3.png" id="4_37y55"]
+[ext_resource type="Texture2D" uid="uid://cmbudsguo017p" path="res://assets/gore/Flesh4.png" id="5_8nep8"]
+[ext_resource type="Texture2D" uid="uid://dt2ypj12gxfq6" path="res://assets/gore/Flesh5.png" id="6_2hgo5"]
+
+[node name="FleshGib" instance=ExtResource("1_vtmue")]
+texture = Array[Texture2D]([ExtResource("2_vtmue"), ExtResource("3_c7ksk"), ExtResource("4_37y55"), ExtResource("5_8nep8"), ExtResource("6_2hgo5")])
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_vtmue")

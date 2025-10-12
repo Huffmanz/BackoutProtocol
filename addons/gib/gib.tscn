@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d11lb6fx6l6b3"]
+
+[ext_resource type="Script" uid="uid://j1eo05j2ni75" path="res://addons/gib/gib.gd" id="1_qedsk"]
+[ext_resource type="Texture2D" uid="uid://dgkimua4kv5tu" path="res://assets/gore/blood_Drop.png" id="2_t4lm0"]
+[ext_resource type="PackedScene" uid="uid://cqj0qmxu6pkug" path="res://addons/movement/bounce_component.tscn" id="3_g67o2"]
+
+[sub_resource type="Curve" id="Curve_g67o2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Gib" type="Node2D"]
+script = ExtResource("1_qedsk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+scale = Vector2(2, 2)
+amount = 45
+texture = ExtResource("2_t4lm0")
+lifetime = 0.3
+speed_scale = 0.4
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_g67o2")
+color = Color(0.666667, 0, 0.164706, 1)
+
+[node name="ParticleTimer" type="Timer" parent="Sprite2D/CPUParticles2D"]
+one_shot = true
+autostart = true
+
+[node name="BounceComponent" parent="." node_paths=PackedStringArray("host_node") instance=ExtResource("3_g67o2")]
+host_node = NodePath("../Sprite2D")
+start_at_top = false
+rotate = true

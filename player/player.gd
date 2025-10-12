@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -33,6 +34,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("fire") and movement_direction == Vector2.ZERO:
 		animation_player.play("fire")
 		is_shooting = true
+		GameEvents.emit_camera_shake(10)
 		await get_tree().create_timer(0.5).timeout
 		is_shooting = false
 	else:

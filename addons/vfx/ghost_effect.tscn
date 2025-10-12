@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c07ombi0aqyon"]
+
+[ext_resource type="Script" uid="uid://6gser4u0w2fp" path="res://addons/vfx/ghost_effect.gd" id="1_6scuf"]
+[ext_resource type="Texture2D" uid="uid://dwasxpesocjgp" path="res://assets/Pixel Crawler/Heroes/Knight/Run/Run-Sheet.png" id="1_poqww"]
+
+[node name="GhostEffect" type="Sprite2D"]
+texture = ExtResource("1_poqww")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+script = ExtResource("1_6scuf")

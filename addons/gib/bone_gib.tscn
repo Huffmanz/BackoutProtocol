@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bur7g4a4j7uro"]
+
+[ext_resource type="PackedScene" uid="uid://d11lb6fx6l6b3" path="res://addons/gib/gib.tscn" id="1_6pos2"]
+[ext_resource type="Texture2D" uid="uid://b8dfeeg4tb0o8" path="res://assets/gore/Bone.png" id="2_w6mq3"]
+
+[node name="BoneGib" instance=ExtResource("1_6pos2")]
+texture = Array[Texture2D]([ExtResource("2_w6mq3")])
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_w6mq3")

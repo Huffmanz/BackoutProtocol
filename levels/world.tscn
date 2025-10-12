@@ -1,12 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf8qe6080sxle"]
+[gd_scene load_steps=11 format=3 uid="uid://cf8qe6080sxle"]
 
 [ext_resource type="Texture2D" uid="uid://ct8q6ohfjdcyj" path="res://assets/enemy/monster_spritesheet_128.png" id="1_tsgde"]
 [ext_resource type="Script" uid="uid://bo1yagkpixg58" path="res://scripts/BasicIK.gd" id="2_pmfem"]
 [ext_resource type="PackedScene" uid="uid://c2d8eis0nmqbv" path="res://player/player.tscn" id="3_pmfem"]
+[ext_resource type="PackedScene" uid="uid://blmklthk38yc1" path="res://addons/ui/vignette.tscn" id="4_w32yo"]
+
+[sub_resource type="Environment" id="Environment_w32yo"]
+background_mode = 3
+ambient_light_energy = 0.0
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgde"]
 radius = 13.0
 height = 38.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w32yo"]
+light_mode = 2
 
 [sub_resource type="Animation" id="Animation_tsgde"]
 resource_name = "Crawl"
@@ -216,6 +227,12 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w32yo")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+
 [node name="CrawlingMonster" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CrawlingMonster"]
@@ -226,6 +243,7 @@ shape = SubResource("CapsuleShape2D_tsgde")
 
 [node name="LowerTorso" type="Sprite2D" parent="CrawlingMonster/Graphics"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(0, -19)
 texture = ExtResource("1_tsgde")
 region_enabled = true
@@ -233,6 +251,7 @@ region_rect = Rect2(1.2707214, -1.091816, 27.518112, 28.966438)
 
 [node name="UpperTorso" type="Sprite2D" parent="CrawlingMonster/Graphics"]
 self_modulate = Color(0.2159017, 0.21590173, 0.2159017, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 texture = ExtResource("1_tsgde")
 region_enabled = true
 region_rect = Rect2(-0.69664, 29.521955, 32.44651, 21.367216)
@@ -251,22 +270,24 @@ rotation = 1.5707964
 scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="CrawlingMonster/Graphics/ArmL"]
-rotation = -0.002827395
+rotation = 0.35468307
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmL/Shoulder"]
 self_modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(5, 0.9999999)
 texture = ExtResource("1_tsgde")
 region_enabled = true
 region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="CrawlingMonster/Graphics/ArmL/Shoulder"]
-position = Vector2(19.104916, 0)
-rotation = 2.3599355
+position = Vector2(19.104916, -7.1525574e-07)
+rotation = 1.928986
 
 [node name="LowerArm" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmL/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(6.0226965, -1.9999987)
 texture = ExtResource("1_tsgde")
 region_enabled = true
@@ -274,10 +295,11 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 
 [node name="Hand" type="Node2D" parent="CrawlingMonster/Graphics/ArmL/Shoulder/Elbow"]
 position = Vector2(14, -1.9999962)
-rotation = -0.78631175
+rotation = -0.7128726
 
 [node name="Hand" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmL/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(5, -1)
 texture = ExtResource("1_tsgde")
 region_enabled = true
@@ -298,11 +320,12 @@ rotation = 1.5707964
 scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="CrawlingMonster/Graphics/ArmR"]
-rotation = -3.0926716
+rotation = 2.9523613
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmR/Shoulder"]
 self_modulate = Color(0.18000486, 0.18000486, 0.18000486, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(4.4679146, 0.19425678)
 texture = ExtResource("1_tsgde")
 flip_v = true
@@ -310,11 +333,12 @@ region_enabled = true
 region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="CrawlingMonster/Graphics/ArmR/Shoulder"]
-position = Vector2(18.249922, -4.7683716e-07)
-rotation = -2.2872036
+position = Vector2(18.249924, 0)
+rotation = -2.034427
 
 [node name="LowerArm" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmR/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(5.4506636, 0.5827694)
 texture = ExtResource("1_tsgde")
 flip_v = true
@@ -323,10 +347,11 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 
 [node name="Hand" type="Node2D" parent="CrawlingMonster/Graphics/ArmR/Shoulder/Elbow"]
 position = Vector2(14, -1.9999962)
-rotation = 0.4517885
+rotation = 0.652862
 
 [node name="Hand" type="Sprite2D" parent="CrawlingMonster/Graphics/ArmR/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(4.2731686, 1.6929722)
 texture = ExtResource("1_tsgde")
 flip_v = true
@@ -335,6 +360,7 @@ region_rect = Rect2(106.00077, 27.646797, 16.221207, 14.193554)
 
 [node name="Head" type="Sprite2D" parent="CrawlingMonster/Graphics"]
 self_modulate = Color(0.15487596, 0.154876, 0.15487596, 1)
+material = SubResource("CanvasItemMaterial_w32yo")
 position = Vector2(0, 11)
 texture = ExtResource("1_tsgde")
 region_enabled = true
@@ -355,4 +381,6 @@ libraries = {
 autoplay = "Crawl"
 
 [node name="Player" parent="." instance=ExtResource("3_pmfem")]
-position = Vector2(142, 2)
+position = Vector2(717, 357)
+
+[node name="Vignette" parent="." instance=ExtResource("4_w32yo")]

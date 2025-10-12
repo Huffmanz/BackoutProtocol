@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://7fc4x26xp5eg"]
+
+[ext_resource type="Texture2D" uid="uid://csi3t1j78v0mr" path="res://addons/assets/TheUltimateWeaponsPack/TheUltimateWeaponsPack_Sheet.png" id="1_ngfs7"]
+
+[resource]
+atlas = ExtResource("1_ngfs7")
+region = Rect2(192, 192, 32, 9)
