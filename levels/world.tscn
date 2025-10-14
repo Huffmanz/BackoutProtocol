@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf8qe6080sxle"]
+[gd_scene load_steps=13 format=3 uid="uid://cf8qe6080sxle"]
 
 [ext_resource type="PackedScene" uid="uid://qdp8bchihp4g" path="res://enemy/crawling_monster.tscn" id="1_pmfem"]
+[ext_resource type="Shader" uid="uid://jin2eqt4pryc" path="res://addons/shaders/static_overlay.gdshader" id="1_w32yo"]
 [ext_resource type="PackedScene" uid="uid://c2d8eis0nmqbv" path="res://player/player.tscn" id="3_pmfem"]
 [ext_resource type="PackedScene" uid="uid://blmklthk38yc1" path="res://addons/ui/vignette.tscn" id="4_w32yo"]
+[ext_resource type="PackedScene" uid="uid://b2dma67iedvaj" path="res://addons/vfx/flickering_light.tscn" id="5_712nc"]
 
 [sub_resource type="Environment" id="Environment_w32yo"]
 background_mode = 3
@@ -11,6 +13,18 @@ tonemap_mode = 3
 glow_enabled = true
 glow_intensity = 2.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w32yo"]
+frequency = 0.3162
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_712nc"]
+noise = SubResource("FastNoiseLite_w32yo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_712nc"]
+shader = ExtResource("1_w32yo")
+shader_parameter/Noise = SubResource("NoiseTexture2D_712nc")
+shader_parameter/Transparency = 4.0
+shader_parameter/Slow = 25.0
+
 [sub_resource type="Gradient" id="Gradient_w32yo"]
 colors = PackedColorArray(0.6156863, 0.6156863, 0.6156863, 1, 0.6156863, 0.6156863, 0.6156863, 1)
 
@@ -18,23 +32,37 @@ colors = PackedColorArray(0.6156863, 0.6156863, 0.6156863, 1, 0.6156863, 0.61568
 gradient = SubResource("Gradient_w32yo")
 width = 1000
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_712nc"]
+vertices = PackedVector2Array(2534.7422, 1595.0313, -893.9375, 1606.9609, -1111.9922, -593.2969, 2262.1484, -690.72656)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-903, 1617, 2546, 1605, 2271, -701, -1123, -603)])
+
 [node name="Node2D" type="Node2D"]
+
+[node name="Vignette" parent="." instance=ExtResource("4_w32yo")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w32yo")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+material = SubResource("ShaderMaterial_712nc")
+color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(736.49994, 387.5)
 scale = Vector2(2.473, 1701)
 texture = SubResource("GradientTexture1D_712nc")
 
-[node name="CrawlingMonster" parent="." instance=ExtResource("1_pmfem")]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_712nc")
 
-[node name="Player" parent="." instance=ExtResource("3_pmfem")]
+[node name="CrawlingMonster" parent="NavigationRegion2D" instance=ExtResource("1_pmfem")]
+
+[node name="CrawlingMonster2" parent="NavigationRegion2D" instance=ExtResource("1_pmfem")]
+position = Vector2(342, -13)
+
+[node name="Player" parent="NavigationRegion2D" instance=ExtResource("3_pmfem")]
 position = Vector2(717, 357)
 
-[node name="Vignette" parent="." instance=ExtResource("4_w32yo")]
+[node name="FlickeringLight" parent="." instance=ExtResource("5_712nc")]
+position = Vector2(37, 25)

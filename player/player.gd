@@ -26,15 +26,16 @@ func _process(delta):
 	#get movement vector
 	var movement_direction = get_movement_vector()
 	#move player
-	look_at(get_global_mouse_position())
 	if movement_direction != Vector2.ZERO and !is_shooting:
 		velocity = movement_direction * speed   
 		animation_player.play("walk")
 		legs.play("walk")
+		rotation = movement_direction.angle()
 	else:
 		velocity = Vector2.ZERO
 		legs.stop()
 		legs.frame = 2
+		look_at(get_global_mouse_position())
 
 	if legs.frame == 0 or legs.frame == 4:
 		footstep_audio.play_random()

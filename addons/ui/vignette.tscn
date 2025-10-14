@@ -36,6 +36,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_mh535")
 anchors_preset = 15
 anchor_right = 1.0

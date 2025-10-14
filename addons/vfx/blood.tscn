@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cfujdbtae3txl" path="res://addons/vfx/blood.gd" id="2_ypna7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu506"]
-light_mode = 1
+light_mode = 2
 
 [sub_resource type="Curve" id="Curve_y615r"]
 _data = [Vector2(0, 0.305263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -18,8 +18,8 @@ lifetime = 0.2
 explosiveness = 1.0
 spread = 20.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 290.0
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
 scale_amount_min = 0.1
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_y615r")
