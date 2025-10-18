@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var attack_range : float = 100.0
+
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var hurtbox_component : HurtboxComponent = $HurtboxComponent
 @onready var health_component : HealthComponent = $HealthComponent
@@ -13,6 +15,7 @@ var gib_component = preload("res://components/gib_component/gib_component.tscn")
 
 var is_hurt = false
 var in_light = false
+var is_attacking = false
 var direction := Vector2.ZERO
 
 func _ready():
@@ -32,13 +35,13 @@ func _process(_delta):
 	var current_location = global_position
 	nav_agent.target_position = Utils.get_player().global_position
 	var  next_location = Vector2.ZERO
-	if nav_agent.is_target_reachable() and !in_light:
+	if nav_agent.is_target_reachable() and !in_light and !is_attacking:
 		next_location = nav_agent.get_next_path_position()
 		direction = (next_location - current_location).normalized()
 		nav_agent.set_velocity(velocity_component.accelerate_in_direction(direction))
 		animation_player.play("crawl")
 		look_at(Utils.get_player().global_position)	
-	else:
+	elif !is_attacking:
 		animation_player.play("idle")
 
 	if in_light:
@@ -50,7 +53,15 @@ func _process(_delta):
 			crawl_audio.play_random()
 	else:	
 		crawl_audio.stop()
-	move_and_slide()
+
+	if (Utils.get_player().global_position - global_position).length() < attack_range and !in_light:
+		animation_player.play("attack")
+		is_attacking = true
+		await animation_player.animation_finished
+		is_attacking = false	
+	else:
+		animation_player.play("crawl")
+		move_and_slide()
 
 func on_velocity_computed(safe_velocity):
 	velocity = safe_velocity

@@ -4,25 +4,26 @@
 [ext_resource type="Script" uid="uid://cfujdbtae3txl" path="res://addons/vfx/blood.gd" id="2_ypna7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu506"]
-light_mode = 2
+light_mode = 1
 
-[sub_resource type="Curve" id="Curve_y615r"]
-_data = [Vector2(0.0028489977, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.016255736), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_trlaa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Blood" type="CPUParticles2D"]
 material = SubResource("CanvasItemMaterial_cu506")
+emitting = false
 amount = 32
 texture = ExtResource("1_icpx3")
 lifetime = 0.2
+one_shot = true
 explosiveness = 1.0
 spread = 20.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 400.0
-scale_amount_min = 0.1
-scale_amount_max = 0.5
-scale_amount_curve = SubResource("Curve_y615r")
+initial_velocity_min = 310.53
+initial_velocity_max = 617.11
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_trlaa")
 color = Color(0, 0, 0, 1)
 script = ExtResource("2_ypna7")
 

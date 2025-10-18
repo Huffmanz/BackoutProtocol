@@ -13,11 +13,22 @@ extends CharacterBody2D
 @onready var shotgun_fire_audio : RandomStreamPlayer = $ShotgunFire
 @onready var footstep_audio : RandomStreamPlayer = $FootstepSound
 @onready var upper_body : Node2D = $Graphics/UpperBody
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var hurt_audio: RandomStreamPlayer = $HurtAudioPlayer
 
 
 
 var is_aiming = false
 var is_shooting = false
+
+func _ready():
+	health_component.health_decreased.connect(on_health_decreased)
+
+func on_health_decreased(amount: float):
+	print("Player health decreased: ", amount)
+	hurt_audio.play_random()
+
 
 func get_movement_vector():
 	var input_vector = Vector2.ZERO

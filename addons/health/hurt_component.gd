@@ -23,6 +23,7 @@ func on_area_entered(other_area:Area2D):
 	var hitbox_component = other_area as HitboxComponent
 	var damage = ceil(hitbox_component.damage * multiplier)
 	health_component.damage(damage)
+
 	if show_damange_numbers:
 		Utils.create_negative_numbers(global_position + (Vector2.UP * 16), damage)
 	if show_blood:

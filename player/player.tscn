@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c2d8eis0nmqbv"]
+[gd_scene load_steps=37 format=3 uid="uid://c2d8eis0nmqbv"]
 
 [ext_resource type="Texture2D" uid="uid://c7ssnpswr04i3" path="res://assets/player/leg_spritesheet.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b2wnofxey6xn5" path="res://player/player.gd" id="1_qjkh3"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bynt8q1kxachw" path="res://addons/sfx/random_stream_player.tscn" id="8_hg6s5"]
 [ext_resource type="AudioStream" uid="uid://c25dbpe7aedrx" path="res://assets/audio/shotgun/408099__lilmati__shotgun-shot-02.wav" id="9_8t03j"]
 [ext_resource type="AudioStream" uid="uid://5gsajfp1r2xe" path="res://assets/audio/697182__znukem__single-footstep.wav" id="10_8t03j"]
+[ext_resource type="PackedScene" uid="uid://cpybrjbfi0xld" path="res://addons/health/hurt_component.tscn" id="12_yllr7"]
+[ext_resource type="PackedScene" uid="uid://cg7ijr0kr0ad7" path="res://addons/health/health_component.tscn" id="13_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://bviuo82ojsx7m" path="res://addons/assets/sfx/player/Hero_hit_1.mp3" id="14_32hag"]
+[ext_resource type="AudioStream" uid="uid://d155vg1f75xy7" path="res://addons/assets/sfx/player/Hero_hit_2.mp3" id="15_tqiix"]
+[ext_resource type="AudioStream" uid="uid://brpluue0bmxu2" path="res://addons/assets/sfx/player/Hero_hit_3.mp3" id="16_e7oew"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_boad6"]
 light_mode = 1
@@ -496,6 +501,10 @@ _data = {
 radius = 15.0
 height = 52.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wodsf"]
+radius = 15.0
+height = 52.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shotgun", "muzzle") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_qjkh3")
@@ -537,7 +546,7 @@ elbow = NodePath("Shoulder/Elbow")
 hand = NodePath("Shoulder/Elbow/Hand")
 
 [node name="Shoulder" type="Node2D" parent="Graphics/UpperBody/ArmL"]
-rotation = 2.0637908
+rotation = 0.22286125
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/UpperBody/ArmL/Shoulder"]
 modulate = Color(0.16565639, 0.16565642, 0.16565639, 1)
@@ -549,7 +558,7 @@ region_enabled = true
 region_rect = Rect2(91.40177, 45.35976, 32.50035, 14.975647)
 
 [node name="Elbow" type="Node2D" parent="Graphics/UpperBody/ArmL/Shoulder"]
-position = Vector2(22.009748, 1.9073486e-06)
+position = Vector2(22.009752, -1.9073486e-06)
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/UpperBody/ArmL/Shoulder/Elbow"]
 self_modulate = Color(0.2509804, 0.2509804, 0.2509804, 1)
@@ -562,7 +571,7 @@ region_rect = Rect2(94.58808, 25.923279, 28.358139, 13.701126)
 
 [node name="Hand" type="Node2D" parent="Graphics/UpperBody/ArmL/Shoulder/Elbow"]
 position = Vector2(22, 0)
-rotation = 0.27460793
+rotation = 0.5447408
 
 [node name="Hand" type="Sprite2D" parent="Graphics/UpperBody/ArmL/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -623,7 +632,7 @@ hand = NodePath("Shoulder/Elbow/Hand")
 elbow_flipped = false
 
 [node name="Shoulder" type="Node2D" parent="Graphics/UpperBody/ArmR"]
-rotation = -0.9338426
+rotation = -2.7757683
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/UpperBody/ArmR/Shoulder"]
 modulate = Color(0.16565639, 0.16565642, 0.16565639, 1)
@@ -634,8 +643,7 @@ region_enabled = true
 region_rect = Rect2(91.40177, 45.35976, 32.50035, 14.975647)
 
 [node name="Elbow" type="Node2D" parent="Graphics/UpperBody/ArmR/Shoulder"]
-position = Vector2(22.00407, 1.9073486e-06)
-rotation = -2.171845
+position = Vector2(22.00407, 0)
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/UpperBody/ArmR/Shoulder/Elbow"]
 self_modulate = Color(0.2509804, 0.2509804, 0.2509804, 1)
@@ -647,7 +655,7 @@ region_rect = Rect2(94.58808, 25.923279, 28.358139, 13.701126)
 
 [node name="Hand" type="Node2D" parent="Graphics/UpperBody/ArmR/Shoulder/Elbow"]
 position = Vector2(22, 0)
-rotation = 2.0666878
+rotation = 0.16597235
 
 [node name="Hand" type="Sprite2D" parent="Graphics/UpperBody/ArmR/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.49803922, 0.49803922, 0.49803922, 1)
@@ -656,6 +664,12 @@ position = Vector2(7, -1)
 texture = ExtResource("2_rkbax")
 region_enabled = true
 region_rect = Rect2(101.279335, 6.4867983, 17.206055, 13.382495)
+
+[node name="Shadows2" type="PointLight2D" parent="Graphics/UpperBody"]
+z_index = 1
+position = Vector2(1.0000076, -2.000002)
+shadow_enabled = true
+texture = ExtResource("6_boad6")
 
 [node name="Lights" type="Node2D" parent="Graphics/UpperBody"]
 z_index = 3
@@ -668,11 +682,6 @@ shadow_enabled = true
 texture = ExtResource("6_boad6")
 offset = Vector2(0, -150)
 texture_scale = 1.5
-
-[node name="Shadows2" type="PointLight2D" parent="Graphics/UpperBody/Lights"]
-z_index = 1
-shadow_enabled = true
-texture = ExtResource("6_boad6")
 
 [node name="LightMask" type="PointLight2D" parent="Graphics/UpperBody/Lights"]
 visible = false
@@ -716,3 +725,18 @@ max_pitch = 0.8
 [node name="FootstepSound" parent="." instance=ExtResource("8_hg6s5")]
 bus = &"sfx"
 streams = Array[AudioStream]([ExtResource("10_8t03j")])
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("12_yllr7")]
+collision_layer = 8
+collision_mask = 8
+health_component = NodePath("../HealthComponent")
+show_damange_numbers = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CapsuleShape2D_wodsf")
+
+[node name="HealthComponent" parent="." instance=ExtResource("13_kb6p2")]
+
+[node name="HurtAudioPlayer" parent="." instance=ExtResource("8_hg6s5")]
+bus = &"sfx"
+streams = Array[AudioStream]([ExtResource("14_32hag"), ExtResource("15_tqiix"), ExtResource("16_e7oew")])

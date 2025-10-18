@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq0s45snm6ks4"]
+
+[ext_resource type="Texture2D" uid="uid://ct8q6ohfjdcyj" path="res://assets/enemy/monster_spritesheet_128.png" id="1_od566"]
+[ext_resource type="Script" uid="uid://jmu63bkafci3" path="res://components/gibs/gib.gd" id="1_xk484"]
+[ext_resource type="Texture2D" uid="uid://2s242sbxn4bm" path="res://assets/gore/blood_Drop.png" id="4_ap1y3"]
+[ext_resource type="PackedScene" uid="uid://cqj0qmxu6pkug" path="res://addons/movement/bounce_component.tscn" id="4_od566"]
+
+[sub_resource type="Curve" id="Curve_w2xdm"]
+_data = [Vector2(0, 0.995416), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Gib" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_od566")
+region_enabled = true
+region_rect = Rect2(5.8988037, 53.609917, 19.5085, 24.173561)
+script = ExtResource("1_xk484")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 1
+scale = Vector2(2, 2)
+amount = 45
+texture = ExtResource("4_ap1y3")
+lifetime = 0.3
+speed_scale = 0.4
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_w2xdm")
+color = Color(0, 0, 0, 1)
+
+[node name="ParticleTimer" type="Timer" parent="CPUParticles2D"]
+one_shot = true
+autostart = true
+
+[node name="BounceComponent" parent="." node_paths=PackedStringArray("host_node") instance=ExtResource("4_od566")]
+host_node = NodePath("..")

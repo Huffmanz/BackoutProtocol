@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://cf8qe6080sxle"]
+[gd_scene load_steps=15 format=4 uid="uid://cf8qe6080sxle"]
 
 [ext_resource type="PackedScene" uid="uid://qdp8bchihp4g" path="res://enemy/crawling_monster.tscn" id="1_pmfem"]
 [ext_resource type="Shader" uid="uid://d2vhmawfqm1sm" path="res://addons/shaders/static_overlay_unshaded.gdshader" id="2_712nc"]
 [ext_resource type="TileSet" uid="uid://b6ndsahu5yokw" path="res://levels/tileset.tres" id="3_i8ckm"]
 [ext_resource type="PackedScene" uid="uid://c2d8eis0nmqbv" path="res://player/player.tscn" id="3_pmfem"]
 [ext_resource type="PackedScene" uid="uid://blmklthk38yc1" path="res://addons/ui/vignette.tscn" id="4_w32yo"]
+[ext_resource type="AudioStream" uid="uid://kckffwfnxa20" path="res://addons/assets/sfx/music/universfield__tense-music-for-tense-scenes.mp3" id="6_i8ckm"]
 
 [sub_resource type="Environment" id="Environment_w32yo"]
 background_mode = 3
@@ -78,3 +79,9 @@ position = Vector2(1058, -8)
 
 [node name="Player" parent="Floor/Walls" instance=ExtResource("3_pmfem")]
 position = Vector2(580, 327)
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_i8ckm")
+autoplay = true
+bus = &"music"
+parameters/looping = true

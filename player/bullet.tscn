@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj6j5w83x3fn4"]
+[gd_scene load_steps=9 format=3 uid="uid://bj6j5w83x3fn4"]
 
 [ext_resource type="PackedScene" uid="uid://cxk8jkhkfp0g6" path="res://addons/health/hitbox_component.tscn" id="1_42du2"]
 [ext_resource type="Script" uid="uid://ct6os8jdetp15" path="res://player/bullet.gd" id="1_risil"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://k8oopap8hvqh" path="res://addons/assets/lighting/2d_lights_and_shadows_neutral_point_light.webp" id="4_yag3h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dom4l"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_risil"]
+radius = 9.0
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 0
@@ -25,7 +29,7 @@ collision_layer = 16
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("CircleShape2D_dom4l")
+shape = SubResource("CircleShape2D_risil")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(0.19076231, 0.19076234, 0.19076231, 1)

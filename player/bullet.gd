@@ -10,6 +10,7 @@ extends CharacterBody2D
 func _ready():
 	hitbox_component.area_entered.connect(on_area_entered)
 	hitbox_component.body_entered.connect(on_body_entered)
+	
 
 func _physics_process(delta):
 	velocity = velocity_component.accelerate_in_direction(global_transform.x)
@@ -28,3 +29,6 @@ func on_body_entered(other_body):
 	new_impact.rotation = global_position.angle_to_point(Utils.get_player().global_position)
 	get_tree().current_scene.add_child(new_impact)
 	queue_free() 
+
+
+

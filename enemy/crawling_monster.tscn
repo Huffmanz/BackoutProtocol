@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://qdp8bchihp4g"]
+[gd_scene load_steps=28 format=3 uid="uid://qdp8bchihp4g"]
 
 [ext_resource type="Texture2D" uid="uid://ct8q6ohfjdcyj" path="res://assets/enemy/monster_spritesheet_128.png" id="1_4hbkr"]
 [ext_resource type="Script" uid="uid://ddgvkc02lm862" path="res://enemy/crawling_monster.gd" id="1_m5oy5"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bynt8q1kxachw" path="res://addons/sfx/random_stream_player.tscn" id="10_5uhtl"]
 [ext_resource type="AudioStream" uid="uid://u7h5vyp13ia7" path="res://assets/audio/enemy/555420__tonsil5__zombie-hit-1.wav" id="11_wooao"]
 [ext_resource type="AudioStream" uid="uid://b0argd44trecg" path="res://assets/audio/enemy/471697__puerta118m__walk-earth-crawl.wav" id="12_wooao"]
+[ext_resource type="PackedScene" uid="uid://cxk8jkhkfp0g6" path="res://addons/health/hitbox_component.tscn" id="13_plunh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgde"]
 radius = 13.0
@@ -185,6 +186,18 @@ tracks/11/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_tsgde"]
@@ -433,13 +446,142 @@ tracks/3/keys = {
 "values": [Vector2(0, 11), Vector2(4.7683716e-07, 9), Vector2(-1.7029899e-07, 14.000001)]
 }
 
+[sub_resource type="Animation" id="Animation_ukpko"]
+resource_name = "attack"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/ArmR/HandMarker:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, 22), Vector2(-27.000004, -18.000004), Vector2(12.962959, 38.651848), Vector2(38, 23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/ArmR/HandMarker:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.2356931104119855, 1.9950062, 0.18886411]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/ArmL/HandMarker:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13.000002, 26.000006), Vector2(13.000002, 26.000006), Vector2(25, -6.000002)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Head:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 11), Vector2(-5.0000005, 12), Vector2(7.9999995, 11)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Head:rotation")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.3259487, -0.42109254]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/UpperTorso:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/UpperTorso:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.2268928, -0.24585122]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/LowerTorso:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.14287879, 0.06426568]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/LowerTorso:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -19), Vector2(-3.999999, -19), Vector2(1.000001, -18.000002)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w32yo"]
 _data = {
 &"RESET": SubResource("Animation_pmfem"),
+&"attack": SubResource("Animation_ukpko"),
 &"crawl": SubResource("Animation_tsgde"),
 &"hurt": SubResource("Animation_455eq"),
 &"idle": SubResource("Animation_m5oy5")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eq7h4"]
+radius = 30.016663
 
 [node name="CrawlingMonster" type="CharacterBody2D"]
 z_index = 1
@@ -509,7 +651,7 @@ scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="Graphics/ArmL"]
 use_parent_material = true
-rotation = 0.35468268
+rotation = 0.4283862
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder"]
@@ -523,8 +665,8 @@ region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="Graphics/ArmL/Shoulder"]
 use_parent_material = true
-position = Vector2(19.10489, 2.3841858e-07)
-rotation = 1.9289844
+position = Vector2(19.104845, 0)
+rotation = 1.8518031
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
@@ -538,7 +680,7 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 [node name="Hand" type="Node2D" parent="Graphics/ArmL/Shoulder/Elbow"]
 use_parent_material = true
 position = Vector2(14, -1.9999962)
-rotation = -0.7128707
+rotation = -0.7093929
 
 [node name="Hand" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -566,7 +708,7 @@ scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="Graphics/ArmR"]
 use_parent_material = true
-rotation = 2.952361
+rotation = -2.3240507
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder"]
@@ -581,8 +723,8 @@ region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="Graphics/ArmR/Shoulder"]
 use_parent_material = true
-position = Vector2(18.249931, 0)
-rotation = -2.0344274
+position = Vector2(18.25073, -1.9073486e-06)
+rotation = -2.2245247
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
@@ -597,7 +739,7 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 [node name="Hand" type="Node2D" parent="Graphics/ArmR/Shoulder/Elbow"]
 use_parent_material = true
 position = Vector2(14, -1.9999962)
-rotation = 0.65286267
+rotation = -0.11600403
 
 [node name="Hand" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -647,3 +789,11 @@ max_pitch = 0.8
 volume_db = 5.583
 bus = &"enemy"
 streams = Array[AudioStream]([ExtResource("12_wooao")])
+
+[node name="HitboxComponent" parent="." instance=ExtResource("13_plunh")]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(32, -8)
+shape = SubResource("CircleShape2D_eq7h4")
