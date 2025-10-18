@@ -7,6 +7,9 @@ extends CharacterBody2D
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 @onready var velocity_component : VelocityComponent = $VelocityComponent
 @onready var graphics : Node2D = $Graphics
+@onready var crawl_audio : RandomStreamPlayer = $CrawlingAudioPlayer
+
+var gib_component = preload("res://components/gib_component/gib_component.tscn")
 
 var is_hurt = false
 var in_light = false
@@ -29,7 +32,7 @@ func _process(_delta):
 	var current_location = global_position
 	nav_agent.target_position = Utils.get_player().global_position
 	var  next_location = Vector2.ZERO
-	if nav_agent.is_target_reachable():
+	if nav_agent.is_target_reachable() and !in_light:
 		next_location = nav_agent.get_next_path_position()
 		direction = (next_location - current_location).normalized()
 		nav_agent.set_velocity(velocity_component.accelerate_in_direction(direction))
@@ -41,6 +44,12 @@ func _process(_delta):
 	if in_light:
 		nav_agent.set_velocity(Vector2.ZERO)
 		animation_player.play("idle")
+
+	if velocity.length() > 0:
+		if !crawl_audio.playing:
+			crawl_audio.play_random()
+	else:	
+		crawl_audio.stop()
 	move_and_slide()
 
 func on_velocity_computed(safe_velocity):
@@ -48,7 +57,6 @@ func on_velocity_computed(safe_velocity):
 	move_and_slide()
 
 func on_light_detected(light_detected: bool):
-	print("light detected: ", light_detected)
 	in_light = light_detected
 	
 func on_hit():
@@ -58,4 +66,7 @@ func on_hit():
 	is_hurt = false
 	
 func on_died():
+	var gib_instance = gib_component.instantiate() as GibComponent
+	gib_instance.global_position = global_position
+	get_tree().current_scene.add_child(gib_instance)
 	queue_free()

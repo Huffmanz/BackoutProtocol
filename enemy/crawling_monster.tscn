@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://qdp8bchihp4g"]
+[gd_scene load_steps=25 format=3 uid="uid://qdp8bchihp4g"]
 
 [ext_resource type="Texture2D" uid="uid://ct8q6ohfjdcyj" path="res://assets/enemy/monster_spritesheet_128.png" id="1_4hbkr"]
 [ext_resource type="Script" uid="uid://ddgvkc02lm862" path="res://enemy/crawling_monster.gd" id="1_m5oy5"]
@@ -7,7 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://cpybrjbfi0xld" path="res://addons/health/hurt_component.tscn" id="3_m5oy5"]
 [ext_resource type="PackedScene" uid="uid://cg7ijr0kr0ad7" path="res://addons/health/health_component.tscn" id="4_455eq"]
 [ext_resource type="PackedScene" uid="uid://dts3wb13tteso" path="res://components/light_detector.tscn" id="6_21ryh"]
+[ext_resource type="Shader" uid="uid://jin2eqt4pryc" path="res://addons/shaders/static_overlay.gdshader" id="7_577mg"]
 [ext_resource type="Script" uid="uid://bstw8yyl1mx27" path="res://components/light_detector.gd" id="7_b77tf"]
+[ext_resource type="PackedScene" uid="uid://bynt8q1kxachw" path="res://addons/sfx/random_stream_player.tscn" id="10_5uhtl"]
+[ext_resource type="AudioStream" uid="uid://u7h5vyp13ia7" path="res://assets/audio/enemy/555420__tonsil5__zombie-hit-1.wav" id="11_wooao"]
+[ext_resource type="AudioStream" uid="uid://b0argd44trecg" path="res://assets/audio/enemy/471697__puerta118m__walk-earth-crawl.wav" id="12_wooao"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tsgde"]
 radius = 13.0
@@ -20,7 +24,19 @@ height = 56.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_21ryh"]
 radius = 44.0
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4hbkr"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q8fj0"]
+noise_type = 2
+frequency = 0.0517
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_577mg"]
+noise = SubResource("FastNoiseLite_q8fj0")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wooao"]
+shader = ExtResource("7_577mg")
+shader_parameter/Noise = SubResource("NoiseTexture2D_577mg")
+shader_parameter/Transparency = 2.0
+shader_parameter/Slow = 25.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w32yo"]
 
@@ -348,6 +364,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.13291779, 0.28203535]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HurtAudioPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_m5oy5"]
 resource_name = "idle"
@@ -443,7 +473,7 @@ script = ExtResource("7_b77tf")
 shape = SubResource("CircleShape2D_21ryh")
 
 [node name="Graphics" type="Node2D" parent="."]
-material = SubResource("CanvasItemMaterial_4hbkr")
+material = SubResource("ShaderMaterial_wooao")
 rotation = -1.5707964
 
 [node name="LowerTorso" type="Sprite2D" parent="Graphics"]
@@ -479,7 +509,7 @@ scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="Graphics/ArmL"]
 use_parent_material = true
-rotation = -0.87636125
+rotation = 0.35468268
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder"]
@@ -493,8 +523,8 @@ region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="Graphics/ArmL/Shoulder"]
 use_parent_material = true
-position = Vector2(19.104961, -2.3841858e-06)
-rotation = 1.8076155
+position = Vector2(19.10489, 2.3841858e-07)
+rotation = 1.9289844
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
@@ -508,7 +538,7 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 [node name="Hand" type="Node2D" parent="Graphics/ArmL/Shoulder/Elbow"]
 use_parent_material = true
 position = Vector2(14, -1.9999962)
-rotation = 0.6395421
+rotation = -0.7128707
 
 [node name="Hand" type="Sprite2D" parent="Graphics/ArmL/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -536,7 +566,7 @@ scale = Vector2(0.918456, 1.5388377)
 
 [node name="Shoulder" type="Node2D" parent="Graphics/ArmR"]
 use_parent_material = true
-rotation = 2.5744386
+rotation = 2.952361
 scale = Vector2(1.5, 1.5)
 
 [node name="UpperArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder"]
@@ -551,8 +581,8 @@ region_rect = Rect2(95.57285, 0.41834313, 32.73208, 14.483219)
 
 [node name="Elbow" type="Node2D" parent="Graphics/ArmR/Shoulder"]
 use_parent_material = true
-position = Vector2(18.249918, 7.1525574e-07)
-rotation = -2.4661202
+position = Vector2(18.249931, 0)
+rotation = -2.0344274
 
 [node name="LowerArm" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow"]
 self_modulate = Color(0.20871013, 0.20871016, 0.20871013, 1)
@@ -567,7 +597,7 @@ region_rect = Rect2(103.39379, 16.63955, 19.697174, 10.717583)
 [node name="Hand" type="Node2D" parent="Graphics/ArmR/Shoulder/Elbow"]
 use_parent_material = true
 position = Vector2(14, -1.9999962)
-rotation = 0.89524597
+rotation = 0.65286267
 
 [node name="Hand" type="Sprite2D" parent="Graphics/ArmR/Shoulder/Elbow/Hand"]
 self_modulate = Color(0.24477637, 0.2447764, 0.24477637, 1)
@@ -604,4 +634,16 @@ autoplay = "idle"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 22.0
+radius = 64.0
+
+[node name="HurtAudioPlayer" parent="." instance=ExtResource("10_5uhtl")]
+pitch_scale = 0.73
+bus = &"enemy"
+streams = Array[AudioStream]([ExtResource("11_wooao")])
+min_pitch = 0.7
+max_pitch = 0.8
+
+[node name="CrawlingAudioPlayer" parent="." instance=ExtResource("10_5uhtl")]
+volume_db = 5.583
+bus = &"enemy"
+streams = Array[AudioStream]([ExtResource("12_wooao")])

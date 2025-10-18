@@ -7,7 +7,7 @@
 light_mode = 2
 
 [sub_resource type="Curve" id="Curve_y615r"]
-_data = [Vector2(0, 0.305263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.0028489977, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.016255736), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Blood" type="CPUParticles2D"]

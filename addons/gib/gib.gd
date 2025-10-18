@@ -1,4 +1,4 @@
-class_name Gib
+
 extends Node2D
 
 @export var texture: Array[Texture2D]

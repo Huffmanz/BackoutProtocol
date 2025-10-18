@@ -1,4 +1,4 @@
-class_name  GibComponent
+
 extends Node2D
 
 @export var gibs: Array[PackedScene]
