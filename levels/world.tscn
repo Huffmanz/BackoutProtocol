@@ -1,11 +1,31 @@
-[gd_scene load_steps=15 format=4 uid="uid://cf8qe6080sxle"]
+[gd_scene load_steps=21 format=4 uid="uid://cf8qe6080sxle"]
 
 [ext_resource type="PackedScene" uid="uid://qdp8bchihp4g" path="res://enemy/crawling_monster.tscn" id="1_pmfem"]
+[ext_resource type="Script" uid="uid://052uc5ai5jjm" path="res://ui/ui.gd" id="1_vons5"]
 [ext_resource type="Shader" uid="uid://d2vhmawfqm1sm" path="res://addons/shaders/static_overlay_unshaded.gdshader" id="2_712nc"]
+[ext_resource type="Shader" uid="uid://b2hlyiw316afs" path="res://addons/shaders/vignette.gdshader" id="2_legw5"]
 [ext_resource type="TileSet" uid="uid://b6ndsahu5yokw" path="res://levels/tileset.tres" id="3_i8ckm"]
 [ext_resource type="PackedScene" uid="uid://c2d8eis0nmqbv" path="res://player/player.tscn" id="3_pmfem"]
 [ext_resource type="PackedScene" uid="uid://blmklthk38yc1" path="res://addons/ui/vignette.tscn" id="4_w32yo"]
 [ext_resource type="AudioStream" uid="uid://kckffwfnxa20" path="res://addons/assets/sfx/music/universfield__tense-music-for-tense-scenes.mp3" id="6_i8ckm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmpr0"]
+shader = ExtResource("2_legw5")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.50000002375
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_re8x6"]
+frequency = 0.1116
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mh535"]
+noise = SubResource("FastNoiseLite_re8x6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wqmfy"]
+shader = ExtResource("2_712nc")
+shader_parameter/Noise = SubResource("NoiseTexture2D_mh535")
+shader_parameter/Transparency = 10.0
+shader_parameter/Slow = 25.0
 
 [sub_resource type="Environment" id="Environment_w32yo"]
 background_mode = 3
@@ -43,6 +63,43 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-903, 1617, 2546, 1605, 2271, -701, -1123, -603)])
 
 [node name="Node2D" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("1_vons5")
+
+[node name="VignetteRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_lmpr0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="StaticRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_wqmfy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BatteryBar" type="ProgressBar" parent="UI/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
 
 [node name="Vignette" parent="." instance=ExtResource("4_w32yo")]
 

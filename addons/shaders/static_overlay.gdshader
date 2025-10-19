@@ -9,7 +9,7 @@ uniform sampler2D Noise;
 uniform float Transparency = 4.0;
 uniform float Slow = 25.0;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-render_mode light_only;
+//render_mode light_only;
 
 //Shader Code
 void fragment() {

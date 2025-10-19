@@ -2,9 +2,10 @@ extends Node
 
 #player
 signal camera_shake(camera_shake_strength: float)
-signal player_health_updated(current_health: float)
+signal player_health_updated(current_health: float, max_health: float)
 signal player_died()
-
+signal battery_charge_updated(current_battery_charge: float, max_battery_charge: float)
+signal battery_depleted()
 #wave management
 signal wave_started(wave_number: int)
 signal wave_complete(wave_number: int)

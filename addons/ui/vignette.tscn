@@ -6,22 +6,23 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pcf8w"]
 shader = ExtResource("1_l1h83")
 shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_opacity = 0.50000002375
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pcf8w"]
 frequency = 0.1116
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mh535"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pcf8w"]
 noise = SubResource("FastNoiseLite_pcf8w")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mh535"]
 shader = ExtResource("2_pcf8w")
-shader_parameter/Noise = SubResource("NoiseTexture2D_mh535")
+shader_parameter/Noise = SubResource("NoiseTexture2D_pcf8w")
 shader_parameter/Transparency = 2.0
 shader_parameter/Slow = 25.0
 
 [node name="Vignette" type="CanvasLayer"]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_pcf8w")
